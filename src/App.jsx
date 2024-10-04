@@ -14,11 +14,13 @@ const App = () => {
             "https://dl.polyhaven.org/file/ph-assets/HDRIs/exr/4k/spruit_sunrise_4k.exr",
           ]}
         />
-        <ScrollControls pages={3}>
+        <ScrollControls pages={4}>
           {" "}
           <CarContainer />
         </ScrollControls>
       </Canvas>
+
+      <div className="w-full h-screen bg-black"></div>
     </div>
   );
 };

@@ -21,24 +21,17 @@ const CarContainer = () => {
   useFrame(() => {
     const scrollOffset = data.offset;
 
-    // Limit the rotation based on scroll
-    let limitedScrollY = Math.min(scrollOffset / 0.3, 1); // Clamps to max 1 for Y rotation
-    let limitedScrollZ = Math.min((scrollOffset - 0.3) / 0.3, 1); // Z rotation between 0.3 and 0.6
-    let limitedScrollX = Math.min((scrollOffset - 0.8) / 1, 1); // X rotation between 0.8 and 1
-
+    let limitedScrollY = Math.min(scrollOffset / 0.3, 1);
+    let limitedScrollZ = Math.min((scrollOffset - 0.3) / 0.3, 1);
+    let limitedScrollX = Math.min((scrollOffset - 0.8) / 1, 1);
     if (meshes.Sketchfab_Scene) {
-      // Rotate Y from 0 to 1.5 for scroll 0 to 0.3
       if (scrollOffset <= 0.3) {
         meshes.Sketchfab_Scene.rotation.y = limitedScrollY * 1.5;
-      }
-      // Rotate Z from 0 to 1.5 for scroll 0.3 to 0.6
-      else if (scrollOffset <= 0.6) {
+      } else if (scrollOffset <= 0.6) {
         meshes.Sketchfab_Scene.rotation.z = limitedScrollZ * 1.5;
         meshes.Sketchfab_Scene.position.y = limitedScrollZ * 0.5;
-      }
-      // Rotate X from 0 to 10 for scroll 0.8 to 1
-      else if (scrollOffset >= 0.8) {
-        meshes.Sketchfab_Scene.position.x = limitedScrollX * 60; // Final X rotation after 0.8
+      } else if (scrollOffset >= 0.8) {
+        meshes.Sketchfab_Scene.position.x = limitedScrollX * 60;
       }
     }
 
