@@ -19,8 +19,15 @@ export const AnimeProvider = ({ children }) => {
       show: false,
     },
   });
+
+  const [threeModel, setThreeModel] = useState("./china.glb");
+
+  const [bgColor, setBgColor] = useState("#fff");
+
   return (
-    <AnimeContext.Provider value={{ content, setContent }}>
+    <AnimeContext.Provider
+      value={{ content, setContent, setBgColor, bgColor, threeModel, setThreeModel }}
+    >
       {children}
     </AnimeContext.Provider>
   );

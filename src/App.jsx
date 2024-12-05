@@ -1,26 +1,40 @@
-import { Environment, OrbitControls, ScrollControls } from "@react-three/drei";
+import { Environment, ScrollControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import React from "react";
 import CarContainer from "./components/CarContainer";
-import Hero from "./components/Hero";
+import Home from "./pages/Home.jsx";
+import Navbar from "./components/Navbar.jsx";
+import { useEffect } from "react";
+import Lenis from "lenis";
 
 const App = () => {
-  return (
-    <div className="w-full h-full">
-      <Hero />
-      <Canvas>
-        <Environment
-          files={[
-            "https://dl.polyhaven.org/file/ph-assets/HDRIs/exr/4k/spruit_sunrise_4k.exr",
-          ]}
-        />
-        <ScrollControls pages={4}>
-          {" "}
-          <CarContainer />
-        </ScrollControls>
-      </Canvas>
+  useEffect(() => {
+    const lenis = new Lenis();
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
 
-      <div className="w-full h-screen bg-black"></div>
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+  return (
+    <div className="w-full h-full appMain">
+      <Navbar />
+      <div className="content w-full h-full">
+        <Home />
+        {/* <Canvas>
+          <Environment
+            files={[
+              "https://dl.polyhaven.org/file/ph-assets/HDRIs/exr/4k/spruit_sunrise_4k.exr",
+            ]}
+          />
+          <ScrollControls pages={3}>
+            <CarContainer />
+          </ScrollControls>
+        </Canvas> */}
+      </div>
     </div>
   );
 };

@@ -6,9 +6,9 @@ import { useFrame } from "@react-three/fiber";
 import { useAnimeContext } from "../context/AnimeContext";
 
 const CarContainer = () => {
-  const { content, setContent } = useAnimeContext();
+  const { setContent } = useAnimeContext();
   const carRef = useRef();
-  const data = useScroll(); // This will give us scroll progress (0 to 1)
+  const data = useScroll();
   const model = useGLTF("./car.glb");
 
   let meshes = {};
